@@ -1,5 +1,7 @@
 from f1_metrics import print_metrics_report, manual_f1_calculation
 from visualizations import generate_all_visualizations
+from f1_data import load_all_data
+from f1_visualizations import generate_all_f1_visualizations
 
 def main():
     # Binary Classification Example
@@ -40,7 +42,23 @@ def main():
         },
     ]
     generate_all_visualizations(results)
-    print("\nAll visualizations saved as PNG files.")
+    print("\nAll ML visualizations saved as PNG files.")
+
+    # F1 Driver Data Visualizations
+    print("\n" + "#" * 50)
+    print("F1 Driver Data Visualizations (2015-2024)")
+    print("#" * 50)
+
+    print("\nFetching F1 data (cached after first run)...")
+    f1_data = load_all_data()
+
+    print(f"\nDataset sizes:")
+    for name, df in f1_data.items():
+        print(f"  {name}: {len(df)} rows")
+
+    print("\nGenerating F1 visualizations...")
+    generate_all_f1_visualizations(f1_data)
+    print("\nAll F1 visualizations saved to charts/ directory.")
 
 if __name__ == "__main__":
     main()

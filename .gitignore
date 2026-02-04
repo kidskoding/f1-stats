@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# F1 API cache
+f1_cache/
